@@ -35,7 +35,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myproject.urls'
 
-# --- FIXED: Added the required TEMPLATES configuration block ---
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -67,7 +66,6 @@ REST_FRAMEWORK = {
     )
 }
 
-# --- FIXED: Added required internationalization defaults ---
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -80,10 +78,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# --- FIXED: Added required primary key field default rule ---
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if not DEBUG:
+    # Tell Django it's behind a secure proxy so it doesn't loop redirects
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
