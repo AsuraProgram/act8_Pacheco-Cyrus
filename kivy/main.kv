@@ -1,0 +1,90 @@
+<LoginScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.11, 0.12, 0.16, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [40, 60, 40, 60]
+        spacing: 20
+
+        Label:
+            text: "Activity 8.2 Systems Login"
+            font_size: '26sp'
+            bold: True
+            color: 1, 1, 1, 1
+            size_hint_y: None
+            height: 50
+
+        TextInput:
+            id: username_input
+            hint_text: "Username"
+            multiline: False
+            padding: [15, 12, 15, 12]
+            size_hint_y: None
+            height: 48
+            background_normal: ''
+            background_color: 0.18, 0.20, 0.26, 1
+            foreground_color: 1, 1, 1, 1
+            hint_text_color: 0.5, 0.5, 0.6, 1
+
+        TextInput:
+            id: password_input
+            hint_text: "Password"
+            password: True
+            multiline: False
+            padding: [15, 12, 15, 12]
+            size_hint_y: None
+            height: 48
+            background_normal: ''
+            background_color: 0.18, 0.20, 0.26, 1
+            foreground_color: 1, 1, 1, 1
+            hint_text_color: 0.5, 0.5, 0.6, 1
+
+        Label:
+            id: error_label
+            text: ""
+            color: 1, 0.3, 0.3, 1
+            size_hint_y: None
+            height: 25
+
+        Button:
+            text: "LOG IN"
+            bold: True
+            font_size: '16sp'
+            size_hint_y: None
+            height: 50
+            background_normal: ''
+            background_color: 0.48, 0.38, 0.93, 1
+            on_press: root.do_login(username_input.text, password_input.text)
+
+<DashboardScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.11, 0.12, 0.16, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 30
+        spacing: 15
+
+        Label:
+            text: "Database Items Dashboard"
+            font_size: '22sp'
+            bold: True
+            size_hint_y: None
+            height: 40
+
+        ScrollView:
+            BoxLayout:
+                id: data_container
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 10
